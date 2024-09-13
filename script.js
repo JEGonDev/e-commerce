@@ -34,13 +34,12 @@ const createClothes = (clothe) => {
     divClothe.appendChild(priceClothe)
     divClothe.appendChild(buttonAddCar)
 
-
     containerCards.appendChild(card)
 }
 
 const getClothes = async () => {
     const data = await getAPI(url)
-    data.forEach(clothe => createClothes(clothe));
+    data.forEach(Element => createClothes(Element));
 }
 
 window.addEventListener('DOMContentLoaded', getClothes)
