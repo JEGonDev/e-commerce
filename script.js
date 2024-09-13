@@ -18,10 +18,10 @@ const createClothes = (clothe) => {
     const divClothe = document.createElement('div')
     divClothe.classList.add('description-card')
 
-    const descriptionClothe = document.createElement('h4')
-    descriptionClothe.textContent = clothe.description
+    const descriptionClothe = document.createElement('h5')
+    descriptionClothe.textContent = clothe.title
 
-    const priceClothe = document.createElement('h5')
+    const priceClothe = document.createElement('h4')
     priceClothe.textContent = `$${clothe.price}`
 
     const buttonAddCar = document.createElement('button')
