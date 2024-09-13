@@ -1,15 +1,89 @@
+/*
+Clases de html
+header: icon = icono tienda, title-page = nombre tienda, shopee-car = icono carrito 
+
+body:  principal = section contenedor del filtro y cards,filter-clothes = contenedor del filtro de ropa, container-cards = contenedor donde se generan las cards
+
+footer: footer-links = footer
+
+Clases creadas en js
+card = contenedor de imagen y descripcion
+description-card = contiene h4-descripcion, h5-precio, boton añadir carrito
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(245, 217, 214);
+    line-height: 1.6;
+    /* text-align: center; */
+}
+
+header {
+    margin: 0;
+    justify-content: space-between;
+    display: flex;
+    height: 7rem;
+    align-items: center;
+    background-color: rgb(211, 101, 96);
+    padding: 2rem;
+}
+
+header > img {
+    padding: 1rem;
+    height: 7rem;
+    width: 7rem;
+    padding-left: 15rem;
+}
+
+header > h1 {
+    padding: 1rem;
+    font-family: cursive;
+    font-size: 2rem;
+    color: rgb(24, 22, 22);
+}
+
+header > i {
+    padding: 1rem;
+    font-size: 3rem;
+    padding-right: 15rem;
+    cursor: pointer;
+    color: rgb(24, 22, 22);
+}
+
 .section-clothes {
-    background-color: aqua;
+    margin: 5rem;
+    background-color: rgb(211, 101, 96);
+    height: auto;
+    width: 90%;
+    flex-direction: column;
 }
 
-.principal {
-    background-color: black;
-}
-
+/*Falta modificar en un futuro cuando se agregue el filtro*/
 .filter-clothes {
-    background-color: brown;
+    height: 5rem;
+    background-color: rgb(190, 65, 65);
 }
 
 .container-cards {
-    background-color: blue;
+    margin: 3rem;
+    background-color: rgb(226, 144, 138);
+    border-radius: 1rem;
+    flex-direction: column;
+    justify-content: space-around;
+    display: flex;
+}
+
+.card {
+    margin: 4rem;
+    background-color: rgb(245, 217, 214);
+    width: 30rem;
+    justify-content: space-around;
+    display: flex;
+}
+
+.card > img {
+    height: 5rem;
+    width: 5rem;
 }
