@@ -57,7 +57,7 @@ header > h1 {
     color: rgb(24, 22, 22);
 }
 
-header > i {
+header > a {
     padding: 1rem;
     font-size: 2rem;
     padding-right: 15rem;
