@@ -45,11 +45,74 @@ const createClothes = (clothe) => {
 }
 
 const addToShopeeCar = (clothe) => {
-    arraySelectedItems.push(clothe);
+    arraySelectedItems.push(clothe);  
+
+    // Guardar el carrito en localStorage
+    localStorage.setItem('shopeeCart', JSON.stringify(arraySelectedItems));
     console.log(arraySelectedItems);
     
     generateSelectedItems(clothe);
 }
+
+const generateSelectedItems = (selected) => {
+    const incrementSelectedItems = document.createElement('div');
+    incrementSelectedItems.classList.add('increment-items');
+
+    const buttonRest = document.createElement('button');
+    buttonRest.textContent = '-';
+
+    const imgItem = document.createElement('img');
+    imgItem.src = selected.image;
+    imgItem.alt = selected.title;
+
+    const buttonIncrement = document.createElement('button');
+    buttonIncrement.textContent = '+';
+
+    const descriptionSelectedItems = document.createElement('div');
+    descriptionSelectedItems.classList.add('description-item');
+
+    const titleItem = document.createElement('h3');
+    titleItem.textContent = selected.title;
+
+    const priceItem = document.createElement('h4');
+    priceItem.textContent = `$${selected.price}`;
+
+    descriptionSelectedItems.appendChild(titleItem);
+    descriptionSelectedItems.appendChild(priceItem);
+
+    incrementSelectedItems.appendChild(buttonRest);
+    incrementSelectedItems.appendChild(imgItem);
+    incrementSelectedItems.appendChild(buttonIncrement);
+
+    containerSelectedItems.appendChild(incrementSelectedItems);
+    containerSelectedItems.appendChild(descriptionSelectedItems);
+}
+
+const loadCartItems = () => {
+    const storedCart = localStorage.getItem('shopeeCart');
+    if (storedCart) {
+        arraySelectedItems = JSON.parse(storedCart);
+        arraySelectedItems.forEach(item => generateSelectedItems(item));
+    }
+}
+
+const getClothes = async () => {
+    const data = await getAPI(url)
+    data.forEach(Element => createClothes(Element));
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    getClothes()
+    loadCartItems()
+})
+
+/*
+funcion que permita agregar productos al carrito con un boton
+funcion que pinte los productos del carrito
+funcion que elimine cosas del carrito
+funcion que calcule el valor del contenido del carrito
+funcion que guarde el contenido del carrito (localStorage)
+*/
 
 // const generateSelectedItems = (selected) => {
 //     const incrementSelectedItems = document.createElement('div')
@@ -84,18 +147,3 @@ const addToShopeeCar = (clothe) => {
 //     containerSelectedItems.appendChild(incrementSelectedItems)
 //     containerSelectedItems.appendChild(descriptionSelectedItems)
 // }
-
-const getClothes = async () => {
-    const data = await getAPI(url)
-    data.forEach(Element => createClothes(Element));
-}
-
-window.addEventListener('DOMContentLoaded', getClothes)
-
-/*
-funcion que permita agregar productos al carrito con un boton
-funcion que pinte los productos del carrito
-funcion que elimine cosas del carrito
-funcion que calcule el valor del contenido del carrito
-funcion que guarde el contenido del carrito (localStorage)
-*/
