@@ -3,7 +3,6 @@ let arraySelectedItems = []
 const url = 'https://fakestoreapi.com/products'
 const containerCards = document.getElementById('containerCards')
 const containerSelectedItems = document.getElementById('containerSelectedItems')
-const containerPaySelectedItems = document.getElementById('pay-selected-items')
 
 const getAPI = async (URL) => {
     const response = await fetch(URL)
