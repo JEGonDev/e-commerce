@@ -1,0 +1,80 @@
+let arraySelectedItems = []
+
+const url = 'https://fakestoreapi.com/products'
+const containerCards = document.getElementById('containerCards')
+
+const getAPI = async (URL) => {
+    const response = await fetch(URL)
+    const data = await response.json()
+    return data
+}
+
+const createClothes = (clothe) => {
+    const card = document.createElement('div')
+    card.classList.add('card')
+
+    const imgClothe = document.createElement('img')
+    imgClothe.src = clothe.image
+    imgClothe.alt = clothe.title
+
+    const divClothe = document.createElement('div')
+    divClothe.classList.add('description-card')
+
+    const descriptionClothe = document.createElement('h5')
+    descriptionClothe.textContent = clothe.title
+
+    const priceClothe = document.createElement('h4')
+    priceClothe.textContent = `$${clothe.price}`
+
+    const buttonAddCar = document.createElement('button');  
+    buttonAddCar.textContent = 'Añadir al Carrito';
+    buttonAddCar.dataset.id = clothe.id;  // Guarda ID del producto en el atributo de datos
+    buttonAddCar.addEventListener('click', addToShopeeCar.bind(null, clothe));
+
+
+    card.appendChild(imgClothe)
+
+    card.appendChild(divClothe)
+    divClothe.appendChild(descriptionClothe)
+    divClothe.appendChild(priceClothe)
+    divClothe.appendChild(buttonAddCar)
+
+    containerCards.appendChild(card)
+}
+
+const addToShopeeCar = (clothe) => {
+    arraySelectedItems.push(clothe);  
+
+    // Guardar el carrito en localStorage
+    localStorage.setItem('shopeeCart', JSON.stringify(arraySelectedItems));
+    console.log(arraySelectedItems);
+    
+    generateSelectedItems(clothe);
+}
+
+const loadCartItems = () => {
+    const storedCart = localStorage.getItem('shopeeCart');
+    if (storedCart) {
+        arraySelectedItems = JSON.parse(storedCart);
+        arraySelectedItems.forEach(item => generateSelectedItems(item));
+    }
+}
+
+const getClothes = async () => {
+    const data = await getAPI(url)
+    data.forEach(Element => createClothes(Element));
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    getClothes()
+    loadCartItems()
+})
+
+/*
+funcion que permita agregar productos al carrito con un boton
+funcion que pinte los productos del carrito
+funcion que elimine cosas del carrito
+funcion que calcule el valor del contenido del carrito
+funcion que guarde el contenido del carrito (localStorage)
+*/
+
