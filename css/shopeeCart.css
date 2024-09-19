@@ -30,7 +30,79 @@ header {
     border: 0.1rem solid black;
 }
 
+header > h1 {
+    padding: 1rem;
+    font-family: cursive;
+    font-size: 1.5rem;
+    color: rgb(24, 22, 22);
+    padding-left: 10rem;
+}
+
+header > a {
+    font-size: 2rem;
+    padding-right: 10rem;
+    cursor: pointer;
+    color: rgb(24, 22, 22);
+}
+
 main {
+    justify-content: center;
+    display: flex;
+}
+
+.container-selected-items {
+    background-color: rgb(190, 65, 65);
     justify-content: space-between;
     display: flex;
+    width: 90%;
+    height: 35rem;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    margin: 3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid black;
+}
+
+.increment-items {
+    margin: 1.5rem;
+    justify-content: space-between;
+    display: flex;
+    background-color: rgb(245, 217, 214);
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 0.1rem solid black;
+    height: 13rem;
+    width: 18rem;
+}
+
+.increment-items > img {
+    height: auto;
+    width: 40%;
+    border-radius: 1rem;
+}
+
+.description-item {
+    align-content: center;
+    margin: 0.5rem;
+}
+
+.description-item > h3 {
+    margin: 0.5rem;
+    font-size: 0.7rem;
+    font-family: cursive;
+}
+
+.description-item > h4 {
+    margin: 0.5rem;
+    font-size: 0.7rem;
+    font-family: cursive;
+}
+
+.increment-items > button {
+    background-color: #d36560;
+    height: 1.4rem;
+    font-size: 0.7rem;
+    font-family: cursive;
+    border-radius: 2rem;
+    cursor: pointer;
 }

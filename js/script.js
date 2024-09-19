@@ -104,12 +104,3 @@ const removeItemFromCart = (id) => {
 }
 
 window.addEventListener('DOMContentLoaded',getClothes(),loadCartItems())
-
-/*
-funcion que permita agregar productos al carrito con un boton
-funcion que pinte los productos del carrito
-funcion que elimine cosas del carrito
-funcion que calcule el valor del contenido del carrito
-funcion que guarde el contenido del carrito (localStorage)
-*/
-
