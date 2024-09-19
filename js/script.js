@@ -2,6 +2,8 @@ let arraySelectedItems = []
 
 const url = 'https://fakestoreapi.com/products'
 const containerCards = document.getElementById('containerCards')
+const containerSelectedItems = document.getElementById('containerSelectedItems')
+const containerPaySelectedItems = document.getElementById('pay-selected-items')
 
 const getAPI = async (URL) => {
     const response = await fetch(URL)
@@ -44,12 +46,39 @@ const createClothes = (clothe) => {
 
 const addToShopeeCar = (clothe) => {
     arraySelectedItems.push(clothe);  
-
     // Guardar el carrito en localStorage
-    localStorage.setItem('shopeeCart', JSON.stringify(arraySelectedItems));
-    console.log(arraySelectedItems);
-    
+    localStorage.setItem('shopeeCart', JSON.stringify(arraySelectedItems));   
     generateSelectedItems(clothe);
+}
+
+const generateSelectedItems = (selected) => {
+    const incrementSelectedItems = document.createElement('div');
+    incrementSelectedItems.classList.add('increment-items');
+
+    const imgItem = document.createElement('img');
+    imgItem.src = selected.image;
+    imgItem.alt = selected.title;
+
+    const buttonIncrement = document.createElement('button');
+    buttonIncrement.textContent = 'X';
+
+    const descriptionSelectedItems = document.createElement('div');
+    descriptionSelectedItems.classList.add('description-item');
+
+    const titleItem = document.createElement('h3');
+    titleItem.textContent = selected.title;
+
+    const priceItem = document.createElement('h4');
+    priceItem.textContent = `$${selected.price}`;
+
+    descriptionSelectedItems.appendChild(titleItem);
+    descriptionSelectedItems.appendChild(priceItem);
+
+    incrementSelectedItems.appendChild(imgItem);
+    incrementSelectedItems.appendChild(buttonIncrement);
+
+    containerSelectedItems.appendChild(incrementSelectedItems);
+    containerSelectedItems.appendChild(descriptionSelectedItems);
 }
 
 const loadCartItems = () => {
@@ -65,10 +94,7 @@ const getClothes = async () => {
     data.forEach(Element => createClothes(Element));
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    getClothes()
-    loadCartItems()
-})
+window.addEventListener('DOMContentLoaded',getClothes(),loadCartItems())
 
 /*
 funcion que permita agregar productos al carrito con un boton
