@@ -59,8 +59,12 @@ const generateSelectedItems = (selected) => {
     imgItem.src = selected.image;
     imgItem.alt = selected.title;
 
-    const buttonIncrement = document.createElement('button');
-    buttonIncrement.textContent = 'X';
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'X';
+    removeButton.addEventListener('click', () => {
+        removeItemFromCart(selected.id)
+        incrementSelectedItems.remove()
+    })
 
     const descriptionSelectedItems = document.createElement('div');
     descriptionSelectedItems.classList.add('description-item');
@@ -74,11 +78,11 @@ const generateSelectedItems = (selected) => {
     descriptionSelectedItems.appendChild(titleItem);
     descriptionSelectedItems.appendChild(priceItem);
 
+    incrementSelectedItems.appendChild(descriptionSelectedItems)
     incrementSelectedItems.appendChild(imgItem);
-    incrementSelectedItems.appendChild(buttonIncrement);
+    incrementSelectedItems.appendChild(removeButton);
 
     containerSelectedItems.appendChild(incrementSelectedItems);
-    containerSelectedItems.appendChild(descriptionSelectedItems);
 }
 
 const loadCartItems = () => {
@@ -92,6 +96,11 @@ const loadCartItems = () => {
 const getClothes = async () => {
     const data = await getAPI(url)
     data.forEach(Element => createClothes(Element));
+}
+
+const removeItemFromCart = (id) => {
+    arraySelectedItems = arraySelectedItems.filter(item => item.id !== id)
+    localStorage.setItem('shopeeCart', JSON.stringify(arraySelectedItems))
 }
 
 window.addEventListener('DOMContentLoaded',getClothes(),loadCartItems())
